@@ -1,89 +1,178 @@
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+:root {
+  --primary: #38bdf8;
+  --secondary: #9333ea;
+  --bg-dark: #0f172a;
+  --bg-light: #1e293b;
+}
+
+.theme-cyberpunk {
+  --primary: #f472b6;
+  --secondary: #7c3aed;
+  --bg-dark: #1e0b36;
+  --bg-light: #2d1a4a;
+}
+
+.theme-matrix {
+  --primary: #00ff00;
+  --secondary: #003300;
+  --bg-dark: #000;
+  --bg-light: #111;
+}
+
+.theme-nebula {
+  --primary: #6ee7b7;
+  --secondary: #3b82f6;
+  --bg-dark: #0b1120;
+  --bg-light: #1e293b;
+}
+
 body {
-  font: 20px Montserrat, sans-serif;
-  line-height: 1.8;
-  color: #f5f6f7;
-}
-
-p {
-  font-size: 16px;
-}
-
-.margin {
-  margin-bottom: 45px;
-}
-
-.bg-1 {
-  background-color: #1abc9c;
-  /* Green */
-  color: #ffffff;
-}
-
-.bg-2 {
-  background-color: #474e5d;
-  /* Dark Blue */
-  color: #ffffff;
-}
-
-.bg-3 {
-  background-color: #ffffff;
-  /* White */
-  color: #555555;
-}
-
-.bg-4 {
-  background-color: #2f2f2f;
-  /* Black Gray */
-  color: #fff;
-}
-
-.container-fluid {
-  padding-top: 70px;
-  padding-bottom: 70px;
-}
-
-.navbar {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border: 0;
-  border-radius: 0;
-  margin-bottom: 0;
-  font-size: 12px;
-  letter-spacing: 5px;
-}
-
-.navbar-nav li a:hover {
-  color: #1abc9c !important;
-}
-
-.icons a {
-  text-decoration: none;
-}
-
-.foot a {
-  text-decoration: none;
+  background-color: var(--bg-dark);
   color: white;
+  font-family: "Inconsolata", "Inter", sans-serif;
+  scroll-behavior: smooth;
 }
 
-.foot a:hover {
-  color: #1abc9c;
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-.icons a:hover {
-  color: #1abc9c;
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
 }
 
-.fa:hover {
-  opacity: 0.7;
+.glow-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
 }
 
-.fa-linkedin {
-  color: black;
+.glow-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.2);
 }
 
-.fa-github {
-  color: black;
+.color-trail {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  filter: blur(1px);
+  animation: trailFade 0.8s linear forwards;
 }
 
-.fa-instagram {
-  color: black;
+@keyframes trailFade {
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+.parallax-layer {
+  transition: transform 0.1s linear;
+}
+
+.tech-icon {
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.tech-icon:hover {
+  filter: grayscale(0%);
+  transform: scale(1.2) rotate(5deg);
+}
+
+.floating {
+  animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.interactive-3d {
+  width: 100%;
+  height: 400px;
+  cursor: grab;
+}
+
+.interactive-3d:active {
+  cursor: grabbing;
+}
+
+.particle-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  z-index: -1;
+  filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.neon-border:hover::after {
+  opacity: 1;
+}
+
+.typing-effect {
+  border-right: 2px solid var(--primary);
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--primary);
+  }
 }
